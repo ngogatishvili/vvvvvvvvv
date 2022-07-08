@@ -4,8 +4,10 @@ import {TextField, Typography,Paper,Button} from "@material-ui/core"
 import Filebase from "react-file-base64";
 import {useDispatch,useSelector} from "react-redux"
 import { createPost, updatePost } from '../../actions/posts';
+import {useLocation} from "react-router-dom"
 
 const Form = ({currentId,setCurrentId}) => {
+  const location=useLocation();
   const post=useSelector((store)=>currentId?store.posts.find(post=>post._id===currentId):null);
 const user=JSON.parse(localStorage.getItem("profile"));
   
@@ -41,7 +43,7 @@ useEffect(()=>{
   if(post) {
     setPostData(post);
   }
-},[post])
+},[post,location])
  
 
 
@@ -52,11 +54,12 @@ useEffect(()=>{
         title:"",
         message:"",
         selectedFile:"",
-        tags:""}
+        tags:""
+      }
       )
   }
 
-  if(!user?.result?.name) {
+  if(!user?.result) {
     return <Paper className={classes.paper}>
       <Typography variant="h6" align='center'>Please sign in to create your own memories and like other's memories</Typography>
     </Paper>

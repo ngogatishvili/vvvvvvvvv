@@ -15,6 +15,16 @@ export const fetchPosts=()=>async(dispatch)=>{
         
 }
 
+export const fetchPostBySearch=(searchData)=>async(dispatch)=>{
+        try {
+        const {data:{data}}=await api.fetchPostBySearch(searchData)
+        console.log(data)
+        dispatch()
+        }catch(err) {
+                console.log(err);
+        }
+}
+
 
 export const createPost=(newPost)=>async(dispatch)=>{
         try {

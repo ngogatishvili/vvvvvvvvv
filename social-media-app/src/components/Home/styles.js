@@ -2,19 +2,24 @@ import {makeStyles} from "@material-ui/core/styles"
 
 export default makeStyles((theme)=>({
     
-    
-      image: {
-        marginLeft: '15px',
+      appBarSearch: {
+        borderRadius: 4,
+        marginBottom: '1rem',
+        display: 'flex',
+        padding: '16px',
       },
-      [theme.breakpoints.down("sm")]:{
-        container:{
-          display:"flex",
-          flexDirection:"column-reverse",
-    
-        }
+      pagination: {
+        borderRadius: 4,
+        marginTop: '1rem',
+        padding: '16px',
       },
+      gridContainer: {
+        [theme.breakpoints.down('xs')]: {
+          flexDirection: 'column-reverse',
+        },
       
       
+}
 }))
 
 

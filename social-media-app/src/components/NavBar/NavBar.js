@@ -6,6 +6,8 @@ import {Link, useNavigate,useLocation} from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
 import {LOGOUT} from '../../constants/actionTypes';
 
+import jwtDecode from 'jwt-decode';
+
 
 const NavBar = () => {
   const location=useLocation();
@@ -24,7 +26,11 @@ const NavBar = () => {
 
   useEffect(() => {
     const token = user?.token;
+    if(token) {
+      const decoded=jwtDecode(token);
+    if(decoded.exp*1000<new Date().getTime()) logout();
 
+    }
     setUser(JSON.parse(localStorage.getItem("profile")));
   }, [location]);
 

@@ -8,6 +8,7 @@ import {useDispatch} from "react-redux";
 import jwtDecode from "jwt-decode";
 import {  useNavigate } from 'react-router-dom';
 import {signin,signup} from "../../actions/auth";
+import { AUTH } from '../../constants/actionTypes';
 
 
 const initialState={
@@ -48,17 +49,10 @@ const Auth = () => {
   }
 
   const googleSuccess=async(credentialResponse)=>{
-      const token= credentialResponse.credential;
-      const profileObj=jwtDecode(token);
-      
-    
-      try {
-        dispatch({type:"AUTH",payload:{token,result:profileObj}})
-        navigate("/") 
-        
-      }catch(err) {
-        console.log(err);
-      }
+        const token=credentialResponse.credential;
+        const profileObj=jwtDecode(token);
+        dispatch({type:AUTH,payload:{token,result:profileObj}})
+        navigate("/")
       
   }
 

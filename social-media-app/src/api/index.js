@@ -12,6 +12,9 @@ API.interceptors.request.use((request)=>{
 
 
 export const fetchPosts=()=>API.get("/posts");
+export const fetchPostBySearch=(searchData)=>API.get(`/posts/search?searchQuery=${searchData.search||"none"}&tags=${searchData.tags}`)
+
+
 export const createPost=(newPost)=>API.post("/posts",newPost);
 export const updatePost=(id,updatedPost)=>API.patch(`/posts/${id}`,updatedPost);
 export const deletePost=(id)=>API.delete(`posts/${id}`);
